@@ -7,6 +7,10 @@ use Inertia\Inertia;
 use App\Http\Controllers\AdminAuthController;
 
 Route::get('/', function () {
+
+    // ログを出力する
+    \Log::info("Laravel Log TEST!");
+    
     return Inertia::render('Top', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
