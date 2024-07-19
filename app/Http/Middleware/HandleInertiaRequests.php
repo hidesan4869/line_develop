@@ -46,7 +46,7 @@ class HandleInertiaRequests extends Middleware
             if ($request->is('admin/*')) {
                 return route('admin.login');
             }
-            return route('login');
+            return route('admin.login');
         }
     }
 }
