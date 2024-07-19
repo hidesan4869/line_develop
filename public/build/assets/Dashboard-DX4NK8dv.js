@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper-DlAUqK2U.js";import{o,c as s,a as t}from"./app-TDYCTIQv.js";const a={},c=t("h1",null,"Admin Dashboard",-1),r=[c];function n(_,d){return o(),s("div",null,r)}const f=e(a,[["render",n]]);export{f as default};
