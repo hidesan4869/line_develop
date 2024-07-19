@@ -1,14 +1,22 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
-class AdminAuthController extends Controller
+/**
+ * 管理者の認証
+ */
+class AdminAuthController extends AdminController
 {
-    public function showLoginForm()
+    /**
+     * ログイン画面
+     *
+     * @return void
+     */
+    public function index()
     {
         if (Auth::guard('admin')->check()) {
             return redirect()->route('admin.dashboard');
@@ -17,6 +25,12 @@ class AdminAuthController extends Controller
         return Inertia::render('Admin/Login');
     }
 
+    /**
+     * 認証処理
+     *
+     * @param Request $request
+     * @return void
+     */
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -30,6 +44,11 @@ class AdminAuthController extends Controller
         ]);
     }
 
+    /**
+     * ログアウト
+     *
+     * @return void
+     */
     public function logout()
     {
         Auth::guard('admin')->logout();

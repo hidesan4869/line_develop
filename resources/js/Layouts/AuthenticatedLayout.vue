@@ -28,11 +28,11 @@ const showingNavigationDropdown = ref(false);
                             </div>
 
                             <!-- Navigation Links -->
-                            <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                            <!-- <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                                 <NavLink :href="route('mypage')" :active="route().current('mypage')">
                                     マイページ
                                 </NavLink>
-                            </div>
+                            </div> -->
                         </div>
 
                         <div class="hidden sm:flex sm:items-center sm:ms-6">
@@ -64,9 +64,9 @@ const showingNavigationDropdown = ref(false);
                                     </template>
 
                                     <template #content>
-                                        <DropdownLink :href="route('mypage')">マイページ</DropdownLink>
-                                        <DropdownLink :href="route('profile.edit')">アカウント情報の編集</DropdownLink>
-                                        <DropdownLink :href="route('logout')" method="post" as="button">ログアウト</DropdownLink>
+                                        <!-- <DropdownLink :href="route('mypage')">マイページ</DropdownLink> -->
+                                        <DropdownLink :href="route('admin.line-message')">LINE送信</DropdownLink>
+                                        <DropdownLink :href="route('admin.logout')" method="post" as="button">ログアウト</DropdownLink>
                                     </template>
                                 </Dropdown>
                             </div>
@@ -111,9 +111,9 @@ const showingNavigationDropdown = ref(false);
                     class="sm:hidden"
                 >
                     <div class="pt-2 pb-3 space-y-1">
-                        <ResponsiveNavLink :href="route('mypage')" :active="route().current('mypage')">
+                        <!-- <ResponsiveNavLink :href="route('mypage')" :active="route().current('mypage')">
                             マイページ
-                        </ResponsiveNavLink>
+                        </ResponsiveNavLink> -->
                     </div>
 
                     <!-- Responsive Settings Options -->
@@ -126,8 +126,8 @@ const showingNavigationDropdown = ref(false);
                         </div>
 
                         <div class="mt-3 space-y-1">
-                            <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink>
-                            <ResponsiveNavLink :href="route('logout')" method="post" as="button">
+                            <!-- <ResponsiveNavLink :href="route('profile.edit')"> Profile </ResponsiveNavLink> -->
+                            <ResponsiveNavLink :href="route('admin.logout')" method="post" as="button">
                                 Log Out
                             </ResponsiveNavLink>
                         </div>

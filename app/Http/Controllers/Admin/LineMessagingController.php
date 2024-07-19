@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -9,12 +9,17 @@ use LINE\Clients\MessagingApi\Api\MessagingApiApi;
 use LINE\Clients\MessagingApi\Configuration;
 use LINE\Clients\MessagingApi\Model\PushMessageRequest;
 use LINE\Clients\MessagingApi\Model\TextMessage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 
-class LineMessagingController extends Controller
+/**
+ * LINEの返信画面
+ */
+class LineMessagingController extends AdminController
 {
     public function index()
     {
-        return Inertia::render('SendMessage');
+        return Inertia::render('Admin/LineMessage');
     }
 
     public function sendMessage(Request $request)
@@ -24,7 +29,6 @@ class LineMessagingController extends Controller
             'user_id' => 'required|string',
         ]);
 
-        $channelSecret = env('LINE_CHANNEL_SECRET');
         $channelAccessToken = env('LINE_CHANNEL_ACCESS_TOKEN');
 
         $client = new Client();
@@ -41,7 +45,7 @@ class LineMessagingController extends Controller
             'text' => $request->input('message'),
             'sender' => [
                 'name' => 'PIARYスタッフ みさき',
-                'iconUrl' => 'https://line.me/conyprof'
+                'iconUrl' => 'https://thetv.jp/i/nw/245350/1549363.jpg?w=1284'
             ]
         ];
 
@@ -53,6 +57,7 @@ class LineMessagingController extends Controller
         try {
             $messagingApi->pushMessage($pushMessageRequest);
             return back()->with('success', 'Message sent successfully!');
+            
         } catch (\Exception $e) {
             return back()->with('error', 'Failed to send message: ' . $e->getMessage());
         }
