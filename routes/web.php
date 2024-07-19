@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\LineMessagingController;
 
 Route::get('/', function () {
     return Inertia::render('Top', [
@@ -41,5 +42,8 @@ Route::prefix('admin')->group(function () {
         })->name('admin.dashboard');
     });
 });
+
+Route::get('/send-message', [LineMessagingController::class, 'index']);
+Route::post('/send-message', [LineMessagingController::class, 'sendMessage']);
 
 require __DIR__.'/auth.php';
