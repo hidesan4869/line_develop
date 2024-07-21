@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\Admin\AdminAuthController;
 use App\Http\Controllers\Admin\LineMessagingController;
+use App\Http\Controllers\LineWebhookController;
 
 // Route::get('/', function () {
 //     return Inertia::render('Top', [
@@ -18,6 +19,9 @@ use App\Http\Controllers\Admin\LineMessagingController;
 
 Route::redirect('/', '/admin/login');
 Route::redirect('/login', '/admin/login');
+
+
+Route::post('/line/webhook', [LineWebhookController::class, 'handle']);
 
 Route::prefix('admin')->group(function () {
     Route::redirect('/', '/admin/login');
@@ -37,8 +41,6 @@ Route::prefix('admin')->group(function () {
 
         Route::post('/line-message', [LineMessagingController::class, 'sendMessage']);
     });
-
-
 });
 
 // Route::get('/mypage', function () {

@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::table('admins')->insert([
+        DB::table('dtb_admin')->insert([
             [
                 'id' => 1,
                 'name' => 'テスト鳥居',
                 'email' => 'test@example.com',
                 'password' => Hash::make('testtest'),
+                'icon' => 'img/test.jpg',
                 'created_at' => now(),
                 'updated_at' => now(),
             ],
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::table('admins')->where('id', 1)->delete();
+        DB::table('dtb_admin')->where('id', 1)->delete();
     }
 };

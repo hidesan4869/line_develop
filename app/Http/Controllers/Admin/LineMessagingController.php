@@ -11,12 +11,19 @@ use LINE\Clients\MessagingApi\Model\PushMessageRequest;
 use LINE\Clients\MessagingApi\Model\TextMessage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Services\Admin\LineMessageService;
 
 /**
  * LINEの返信画面
  */
 class LineMessagingController extends AdminController
 {
+    protected $LineMessageService;
+    public function __construct(LineMessageService $LineMessageService)
+    {
+        $this->LineMessageService = $LineMessageService;
+    }
+
     public function index()
     {
         return Inertia::render('Admin/LineMessage');
@@ -57,7 +64,7 @@ class LineMessagingController extends AdminController
         try {
             $messagingApi->pushMessage($pushMessageRequest);
             return back()->with('success', 'Message sent successfully!');
-            
+
         } catch (\Exception $e) {
             return back()->with('error', 'Failed to send message: ' . $e->getMessage());
         }
