@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Services\Admin\LineMessageService;
 
+
 /**
  * LINEの返信画面
  */
@@ -26,6 +27,7 @@ class LineMessagingController extends AdminController
 
     public function index()
     {
+
         return Inertia::render('Admin/LineMessage');
     }
 
