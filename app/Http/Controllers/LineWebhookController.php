@@ -10,6 +10,7 @@ class LineWebhookController extends Controller
     public function handle(Request $request)
     {
         $events = $request->events;
+        Log::info($events);
 
         foreach ($events as $event) {
             if (isset($event['source']['userId'])) {
