@@ -12,6 +12,7 @@ use LINE\Clients\MessagingApi\Model\TextMessage;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Services\Admin\LineMessageService;
+use Illuminate\Support\Facades\Log;
 
 
 /**
@@ -62,6 +63,8 @@ class LineMessagingController extends AdminController
             'to' => $request->input('user_id'),
             'messages' => [$message]
         ]);
+
+        Log::info('メッセージの送信が完了しました');
 
         try {
             $messagingApi->pushMessage($pushMessageRequest);

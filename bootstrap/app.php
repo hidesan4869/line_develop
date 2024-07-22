@@ -16,7 +16,9 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Http\Middleware\AddLinkHeadersForPreloadedAssets::class,
         ]);
 
-        //
+        $middleware->validateCsrfTokens(except: [
+            '/line/webhook',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
