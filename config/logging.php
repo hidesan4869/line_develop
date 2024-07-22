@@ -54,7 +54,8 @@ return [
 
         'stack' => [
             'driver' => 'stack',
-            'channels' => explode(',', env('LOG_STACK', 'single')),
+            // 'channels' => explode(',', env('LOG_STACK', 'single')),
+            'channels' => ['single', 'stdout'],
             'ignore_exceptions' => false,
         ],
 
@@ -127,6 +128,16 @@ return [
             'path' => storage_path('logs/laravel.log'),
         ],
 
+        // stdout チャンネルを追加
+        'stdout' => [
+            'driver' => 'monolog',
+            'handler' => StreamHandler::class,
+            'formatter' => env('LOG_STDOUT_FORMATTER'),
+            'with' => [
+                'stream' => 'php://stdout',
+            ],
+            'processors' => [PsrLogMessageProcessor::class],
+        ],
     ],
 
 ];
